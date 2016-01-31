@@ -1,0 +1,398 @@
+---
+output: word_document
+---
+setwd("/Users/mballard/Desktop/Chapter_4")
+Comparison 1
+```{r}
+data <- read.csv("1.1 HIV Mortality.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "1.1 HIV_Mort_unadj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "1.1 HIV_Mort_adj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("1.2 HIV LTFU.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "1.2 HIV_LTFU_unadj.png",width = 10, height = 3.5, units = "in", res = 300)
+  forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "1.2 HIV_LTFU_adj.png",width = 10, height = 3.5, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+Comparison 2
+```{r}
+data <- read.csv("2.1 Under-5 mortality.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "2.1 Under_5_unadj.png",width = 10, height = 3.5, units = "in", res = 300)
+  forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "2.1 Under_5_adj.png",width = 10, height = 3.5, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("2.3 Infant Mortality.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "2.3 Inf_Mort_unadj.png",width = 9, height = 3, units = "in", res = 300)
+  forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "2.3 Inf_Mort_adj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+
+```
+
+Comparison 3
+```{r}
+data <- read.csv("3.1 Stillbirths.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "3.1 Still_unadj.png",width = 10, height = 4.3, units = "in", res = 300)
+  forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "3.1 Still_adj.png",width = 10, height = 4.3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+
+```
+
+```{r}
+data <- read.csv("3.2 Neonatal mortality.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "3.2 NMR_unadj.png",width = 10, height = 5.3, units = "in", res = 300)
+  forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "3.2 NMR_adj.png",width = 11, height = 5.3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("3.3 Early NMR.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "3.3 E_NMR_unadj.png",width = 10, height = 4, units = "in", res = 300)
+  forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "3.3 E_NMR_adj.png",width = 10, height = 4, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("3.4 Late NMR.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "3.4 L_NMR_unadj.png",width = 10, height = 4, units = "in", res = 300)
+  forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "3.4 L_NMR_adj.png",width = 10.5, height = 4, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("3.5 Perinatal mortality.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "3.5 Peri_unadj.png",width = 10, height = 4, units = "in", res = 300)
+  forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "3.5 Peri_adj.png",width = 10.5, height = 4, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("3.6 Maternal mortality.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "3.6 MatMort_unadj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "3.6 MatMort_adj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("3.9 Clean delivery kits.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+#unadjusted
+png(filename = "3.9 CleanDev_unadj.png",width = 10, height = 3.5, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta_adj)
+png(filename = "3.9 CleanDev_adj.png",width = 10, height = 3.5, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("3.11 Breastfeeding initiation.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+#unadjusted
+png(filename = "3.11 BreastInit_unadj.png",width = 10, height = 4.5, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta_adj)
+png(filename = "3.11 BreastInit_adj.png",width = 11, height = 4.5, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+Comparison 4
+```{r}
+data <- read.csv("4.1 Depression Prevalence.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "4.1 DepPrev_unadj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "4.1 DepPrev_adj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("4.2 CMD Severity.csv")
+print(data)
+library("meta") #load package
+#unadjusted
+result_meta <- metacont(n.e = n_int, mean.e = mean_int, sd.e = sd_int, n.c = n_cont, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="SMD", method.smd="Cohen", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+png(filename = "4.2 CMD Sev_unadj.png",width = 11, height = 4, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metacont(n.e = n.int.ad, mean.e = mean_int, sd.e = sd_int, n.c = n.cont.ad, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="SMD", method.smd="Cohen", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta_adj)
+png(filename = "4.2 CMD Sev_adj.png",width = 11, height = 4, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("4.3 CMD Disability.csv")
+print(data)
+library("meta") #load package
+#unadjusted
+result_meta <- metacont(n.e = n_int, mean.e = mean_int, sd.e = sd_int, n.c = n_cont, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="SMD", method.smd="Cohen", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+png(filename = "4.3 CMD_Dis.png",width = 10.5, height = 3.5, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metacont(n.e = n.int.ad, mean.e = mean_int, sd.e = sd_int, n.c = n.cont.ad, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="SMD", method.smd="Cohen", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta_adj)
+png(filename = "4.3 CMD_Dis_adj.png",width = 11, height = 3.5, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("4.4 PTSD Sev.csv")
+print(data)
+library("meta") #load package
+#unadjusted
+result_meta <- metacont(n.e = n_int, mean.e = mean_int, sd.e = sd_int, n.c = n_cont, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="SMD", method.smd="Cohen", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+png(filename = "4.4 PTSD Sev.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("4.5 Depr Sev Ch.csv")
+print(data)
+library("meta") #load package
+#unadjusted
+result_meta <- metacont(n.e = n_int, mean.e = mean_int, sd.e = sd_int, n.c = n_cont, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="SMD", method.smd="Cohen", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+png(filename = "4.4 PTSD Sev.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+Comparison 5
+```{r}
+data <- read.csv("5.2 HAZ.csv")
+print(data)
+library("meta") #load package
+#unadjusted
+result_meta <- metacont(n.e = n_int, mean.e = mean_int, sd.e = sd_int, n.c = n_cont, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="MD", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+png(filename = "5.2 HAZ_unadj.png",width = 11, height = 3.5, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metacont(n.e = n.int.ad, mean.e = mean_int, sd.e = sd_int, n.c = n.cont.ad, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="MD", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta_adj)
+png(filename = "5.2 HAZ_adj.png",width = 11, height = 3.5, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("5.3 WHZ.csv")
+print(data)
+library("meta") #load package
+#unadjusted
+result_meta <- metacont(n.e = n_int, mean.e = mean_int, sd.e = sd_int, n.c = n_cont, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="MD", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+png(filename = "5.3 WHZ_unadj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metacont(n.e = n.int.ad, mean.e = mean_int, sd.e = sd_int, n.c = n.cont.ad, mean.c = mean_cont, sd.c = sd_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="MD", method.tau = "REML", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta_adj)
+png(filename = "5.3 WHZ_adj.png",width = 11, height = 3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "Mean Difference", "(95% CI)"), leftcols=c("studlab", "n.e", "mean.e", "sd.e", "n.c", "mean.c", "sd.c"), leftlabs=c("Study", "N", "Mean", "(SD)", "N", "Mean", "(SD)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+Comparison 6
+```{r}
+data <- read.csv("6.1 Cur Rate.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+#unadjusted
+png(filename = "6.1 CurRat_unadj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta_adj)
+png(filename = "6.1 CurRat_adj.png",width = 11, height = 3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("6.2 Compl Rate.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta)
+#unadjusted
+png(filename = "6.2 CompRat_unadj.png",width = 10, height = 3.5, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours control", label.right = "Favours CHW")
+summary(result_meta_adj)
+png(filename = "6.2 CompRat_adj.png",width = 10, height = 3.5, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```{r}
+data <- read.csv("6.3 PnTreat Failure.csv")
+print(data)
+library("meta") #load package
+result_meta <- metabin(event.e=int_pos, n.e=n_int, event.c=cont_pos, n.c = n_cont, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta)
+#unadjusted
+png(filename = "6.3 PnTr_unadj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+#adjusted
+result_meta_adj<- metabin(event.e=ipos.ad, n.e=n.int.ad, event.c=cpos.ad, n.c =n.cont.ad, studlab=paste(auth, year, sep = ", "), data=data, sm="RR", method ="I", method.tau = "PM", label.e="Intervention", label.left = "Favours CHW", label.right = "Favours control")
+summary(result_meta_adj)
+png(filename = "6.3 PnTr_adj.png",width = 10, height = 3, units = "in", res = 300)
+forest(result_meta_adj, comb.random=result_meta$comb.random, comb.fixed = FALSE, rightcols=c("w.random", "effect", "ci"), rightlabs=c("Weight", "     Risk Ratio", "(95% CI)"), text.random=("Total (95% CI)"), test.overall.random=TRUE, label.test.overall.random=paste("Test for overall effect"), text.I2 = "I²", text.tau2 = "tau²", ff.hetstat="plain", fs.hetstat=11, fs.lr=11)
+dev.off()
+```
+
+```
+
